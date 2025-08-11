@@ -231,7 +231,7 @@ ME = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(ME, 50, 50)
+controller.moveSprite(ME, 0, 50)
 ME.setBounceOnWall(true)
 pew_pew = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -288,7 +288,7 @@ player2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player2)
-controller.player2.moveSprite(player2, 50, 50)
+controller.player2.moveSprite(player2, 50, 0)
 player2.setBounceOnWall(true)
 harpoon.follow(player2)
 myEnemy = sprites.create(img`
@@ -317,3 +317,7 @@ info.player1.setScore(0)
 info.player2.setScore(0)
 info.player1.setLife(1)
 info.player2.setLife(1)
+ME.setPosition(14, 50)
+pew_pew.setPosition(14, 50)
+player2.setPosition(14, 50)
+harpoon.setPosition(14, 50)

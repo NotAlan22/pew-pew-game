@@ -1,4 +1,4 @@
-// meta={"simUrl":"https://trg-arcade.userpxt.io/v2.0.56/---simulator","cdnUrl":"https://cdn.makecode.com","version":"0.1.0","target":"arcade","targetVersion":"2.0.56","repo":"notalan22/pew-pew-game"}
+// meta={"simUrl":"https://trg-arcade.userpxt.io/v2.0.56/---simulator","cdnUrl":"https://cdn.makecode.com","version":"0.1.1","target":"arcade","targetVersion":"2.0.56","repo":"notalan22/pew-pew-game"}
 // total=2392676 new=21.96% cached=73.76% other=4.28%
 (function (ectx) {
 'use strict';
@@ -578,7 +578,7 @@ const pxsim_pxtrt = pxsim.pxtrt;
 const pxsim_numops = pxsim.numops;
 
 
-function _main___P128275(s) {
+function _main___P128492(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
 
@@ -1295,13 +1295,13 @@ switch (step) {
     return leave(s, r0)
   default: oops()
 } } }
-_main___P128275.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"main.ts","functionName":"<main>","argumentNames":[]}
-_main___P128275.continuations = [  ]
+_main___P128492.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"main.ts","functionName":"<main>","argumentNames":[]}
+_main___P128492.continuations = [  ]
 
-function _main___P128275_mk(s) {
+function _main___P128492_mk(s) {
     checkStack(s.depth);
     return {
-        parent: s, fn: _main___P128275, depth: s.depth + 1,
+        parent: s, fn: _main___P128492, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
   tmp_0: undefined,
   tmp_1: undefined,
@@ -66438,5 +66438,5 @@ const sprites_BaseSpriteSayRenderer__C104707_VT = mkVTable({
 
 const breakpoints = setupDebugger(1, ["pewpew___128001","harpon___128004","Player2___128007","projectile___128020","ME___128026","pew_pew___128030","myEnemy___128041","harpoon___128084","player2___128090"])
 
-return _main___P128275
+return _main___P128492
 })

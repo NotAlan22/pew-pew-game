@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const pewpew = SpriteKind.create()
     export const harpon = SpriteKind.create()
     export const Player2 = SpriteKind.create()
+    export const Shield = SpriteKind.create()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     music.play(music.createSoundEffect(WaveShape.Square, 1600, 1, 255, 0, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
@@ -22,8 +23,11 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, ME, 50, 0)
+        `, player1, 50, 0)
     pew_pew.startEffect(effects.fire, 200)
+})
+sprites.onOverlap(SpriteKind.harpon, SpriteKind.Shield, function (sprite, otherSprite) {
+    sprites.destroy(harpoon, effects.disintegrate, 1000)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(myEnemy, effects.disintegrate, 1000)
@@ -42,13 +46,16 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.harpon, function (sprite, otherSp
 sprites.onOverlap(SpriteKind.Player2, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(harpoon)
     sprites.destroy(player2)
-    myEnemy.follow(ME, 5)
+    myEnemy.follow(player1, 5)
 })
 info.onScore(50, function () {
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
     game.setGameOverMessage(true, "You win")
     game.setGameOverScoringType(game.ScoringType.HighScore)
+})
+sprites.onOverlap(SpriteKind.Shield, SpriteKind.harpon, function (sprite, otherSprite) {
+    info.player2.changeScoreBy(1)
 })
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
     myEnemy = sprites.create(img`
@@ -70,8 +77,9 @@ sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
     myEnemy.setPosition(165, 90)
-    myEnemy.follow(ME, 5)
+    myEnemy.follow(player1, 5)
     myEnemy.follow(player2, 5)
+    Enemy_Sheild.follow(myEnemy)
 })
 sprites.onDestroyed(SpriteKind.Player, function (sprite) {
     game.showLongText("player 1 has been eaten \"A\" to accept death", DialogLayout.Center)
@@ -81,15 +89,16 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(pew_pew)
-    sprites.destroy(ME)
+    sprites.destroy(player1)
     myEnemy.follow(player2, 5)
 })
 let projectile: Sprite = null
+let Enemy_Sheild: Sprite = null
 let myEnemy: Sprite = null
 let player2: Sprite = null
 let harpoon: Sprite = null
 let pew_pew: Sprite = null
-let ME: Sprite = null
+let player1: Sprite = null
 scene.setBackgroundImage(img`
     6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
     6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
@@ -214,7 +223,7 @@ scene.setBackgroundImage(img`
     `)
 scroller.scrollBackgroundWithSpeed(-30, 0)
 mp.setPlayerIndicatorsVisible(true)
-ME = sprites.create(img`
+player1 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -232,8 +241,8 @@ ME = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(ME, 20, 0)
-ME.setBounceOnWall(true)
+controller.moveSprite(player1, 20, 0)
+player1.setBounceOnWall(true)
 pew_pew = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -252,7 +261,7 @@ pew_pew = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.pewpew)
-pew_pew.follow(ME)
+pew_pew.follow(player1)
 harpoon = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -292,7 +301,7 @@ player2 = sprites.create(img`
 controller.player2.moveSprite(player2, 20, 0)
 player2.setBounceOnWall(true)
 harpoon.follow(player2)
-ME.setPosition(14, 90)
+player1.setPosition(14, 90)
 pew_pew.setPosition(14, 50)
 player2.setPosition(14, 90)
 harpoon.setPosition(14, 50)
@@ -315,9 +324,29 @@ myEnemy = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
 myEnemy.setBounceOnWall(true)
-myEnemy.follow(ME, 5)
+myEnemy.follow(player1, 5)
 myEnemy.follow(player2, 5)
 myEnemy.setPosition(166, 90)
+Enemy_Sheild = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    f f f f . . . . . . . . . . . . 
+    f e e f . . . . . . . . . . . . 
+    f e e f . . . . . . . . . . . . 
+    f e e f e e . . . . . . . . . . 
+    f e e f . e . . . . . . . . . . 
+    f e e f e e . . . . . . . . . . 
+    f e e f . . . . . . . . . . . . 
+    f f f f . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Shield)
+Enemy_Sheild.setPosition(166, 90)
+Enemy_Sheild.follow(myEnemy)
 info.player1.setScore(0)
 info.player2.setScore(0)
 info.player1.setLife(1)

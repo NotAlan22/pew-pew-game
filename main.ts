@@ -69,7 +69,7 @@ sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
-    myEnemy.setPosition(160, randint(0, 115))
+    myEnemy.setPosition(165, 90)
     myEnemy.follow(ME, 5)
     myEnemy.follow(player2, 5)
 })
@@ -212,6 +212,7 @@ scene.setBackgroundImage(img`
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     `)
+scroller.scrollBackgroundWithSpeed(-30, 0)
 mp.setPlayerIndicatorsVisible(true)
 ME = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -231,7 +232,7 @@ ME = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(ME, 0, 50)
+controller.moveSprite(ME, 20, 0)
 ME.setBounceOnWall(true)
 pew_pew = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -242,7 +243,7 @@ pew_pew = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . c c b 
-    1 . . . . . . . . . . . . c 4 . 
+    f . . . . . . . . . . . . c 4 . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -288,12 +289,12 @@ player2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player2)
-controller.player2.moveSprite(player2, 50, 0)
+controller.player2.moveSprite(player2, 20, 0)
 player2.setBounceOnWall(true)
 harpoon.follow(player2)
-ME.setPosition(14, 50)
+ME.setPosition(14, 90)
 pew_pew.setPosition(14, 50)
-player2.setPosition(14, 50)
+player2.setPosition(14, 90)
 harpoon.setPosition(14, 50)
 myEnemy = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -316,7 +317,7 @@ myEnemy = sprites.create(img`
 myEnemy.setBounceOnWall(true)
 myEnemy.follow(ME, 5)
 myEnemy.follow(player2, 5)
-myEnemy.setPosition(160, randint(0, 115))
+myEnemy.setPosition(166, 90)
 info.player1.setScore(0)
 info.player2.setScore(0)
 info.player1.setLife(1)

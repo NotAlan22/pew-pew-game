@@ -29,7 +29,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, oth
     sprites.destroy(myEnemy, effects.disintegrate, 1000)
     scene.cameraShake(4, 200)
     music.play(music.createSoundEffect(WaveShape.Noise, 408, 1, 162, 180, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
-    info.changeScoreBy(1)
+    info.player1.changeScoreBy(1)
 })
 sprites.onDestroyed(SpriteKind.Player2, function (sprite) {
     game.showLongText("player 2 has been eaten \"A\" to accept death", DialogLayout.Center)
@@ -37,7 +37,7 @@ sprites.onDestroyed(SpriteKind.Player2, function (sprite) {
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.harpon, function (sprite, otherSprite) {
     sprites.destroy(myEnemy, effects.fire, 1000)
     music.play(music.createSoundEffect(WaveShape.Noise, 408, 1, 162, 180, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
-    info.changeScoreBy(1)
+    info.player2.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player2, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(harpoon)

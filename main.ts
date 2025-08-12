@@ -223,6 +223,7 @@ scene.setBackgroundImage(img`
     `)
 scroller.scrollBackgroundWithSpeed(-30, 0)
 mp.setPlayerIndicatorsVisible(true)
+music.play(music.stringPlayable("F A C5 A G B C5 A ", 120), music.PlaybackMode.LoopingInBackground)
 player1 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 

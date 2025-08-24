@@ -27,7 +27,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     pew_pew.startEffect(effects.fire, 200)
 })
 sprites.onOverlap(SpriteKind.harpon, SpriteKind.Shield, function (sprite, otherSprite) {
-    sprites.destroy(harpoon, effects.disintegrate, 1000)
+    sprites.destroy(Enemy_Sheild, effects.disintegrate, 1000)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(myEnemy, effects.disintegrate, 1000)
